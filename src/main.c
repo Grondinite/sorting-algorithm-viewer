@@ -6,8 +6,6 @@
 #include "../include/constants.h"
 #include "../include/exec_strategies.h"
 #include "../include/sorting.h"
-#include "../include/types.h"
-#include "../include/utils.h"
 
 int
 main (int argc, char *argv[])
@@ -21,7 +19,8 @@ main (int argc, char *argv[])
 
   sort_choice_algorithm_t sort_algorithms[]
       = { { .name = "bubble_sort", .sort_func = bubble_sort },
-          { .name = "selection_sort", .sort_func = selection_sort } };
+          { .name = "selection_sort", .sort_func = selection_sort },
+          { .name = "insertion_sort", .sort_func = insertion_sort } };
 
   sort_choice_strategy_t strategies[]
       = { { .name = "performance", .strategy = PERFORMANCE },
@@ -86,7 +85,7 @@ main (int argc, char *argv[])
       exit (EXIT_FAILURE);
     }
 
-  printf ("Algorithm: %s\n", config.algorithm->name);
+  printf ("\nAlgorithm: %s\n", config.algorithm->name);
   printf ("Strategy: %s\n", config.sort_strategy->name);
 
   return 0;

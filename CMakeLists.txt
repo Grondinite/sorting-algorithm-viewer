@@ -15,4 +15,5 @@ add_executable(sorting_algorithms src/main.c
         src/exec_strategies.c
         include/exec_strategies.h
         include/types.h
+        src/insertion_sort.c
 )

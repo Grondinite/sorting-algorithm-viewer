@@ -3,8 +3,12 @@
 
 #include "utils.h"
 
-void bubble_sort (void (*render_func) (int[], int, int), int array[], int n);
+#define SORT_FUNC_DECL(name)                                                  \
+  void name (void (*render_func) (int[], int, int), int arr[], int n)
 
-void selection_sort (void (*render_func) (int[], int, int), int arr[], int n);
+SORT_FUNC_DECL (bubble_sort);
+SORT_FUNC_DECL (selection_sort);
+SORT_FUNC_DECL (insertion_sort);
+SORT_FUNC_DECL (quick_sort_recursive_last_pivot);
 
 #endif // SORTING_ALGORITHMS_SORTING_H
