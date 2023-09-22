@@ -1,7 +1,7 @@
-#include <memory.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <string.h>
+#include <sys/time.h>
 
 #include "../include/constants.h"
 #include "../include/exec_strategies.h"
@@ -10,10 +10,16 @@
 int
 main (int argc, char *argv[])
 {
+  struct timeval tv;
+  gettimeofday (&tv, NULL);
+
   if (argc != 3)
     {
       fprintf (stderr, "Usage: %s <sorting_algorithm> <sort_strategy>\n",
                argv[0]);
+      fprintf (stderr, "Available sorting algorithms: bubble_sort, "
+                       "selection_sort, insertion_sort\n");
+      fprintf (stderr, "Available sort strategies: performance, render\n");
       exit (EXIT_FAILURE);
     }
 
@@ -26,52 +32,51 @@ main (int argc, char *argv[])
       = { { .name = "performance", .strategy = PERFORMANCE },
           { .name = "render", .strategy = RENDER } };
 
-  struct sort_config config;
+  struct sort_config config = { .algorithm = NULL, .sort_strategy = NULL };
 
   for (int i = 0;
-       i < sizeof (sort_algorithms) / sizeof (struct sort_choice_algorithm);
-       i++)
+       i < ARRAY_LENGTH (sort_algorithms, struct sort_choice_algorithm); ++i)
     {
       if (strcmp (argv[1], sort_algorithms[i].name) == 0)
         {
           config.algorithm = &sort_algorithms[i];
+          break;
         }
     }
 
   if (config.algorithm == NULL)
     {
-      fprintf (stderr,
-               "An error occurred: Option %s not recognized as a sorting "
-               "algorithm\n",
+      fprintf (stderr, "Error: '%s' is not a recognized sorting algorithm.\n",
                argv[1]);
+      fprintf (stderr, "Available sorting algorithms: bubble_sort, "
+                       "selection_sort, insertion_sort\n");
       exit (EXIT_FAILURE);
     }
 
-  for (int i = 0;
-       i < sizeof (strategies) / sizeof (struct sort_choice_strategy); i++)
+  for (int i = 0; i < ARRAY_LENGTH (strategies, struct sort_choice_strategy);
+       ++i)
     {
       if (strcmp (argv[2], strategies[i].name) == 0)
         {
           config.sort_strategy = &strategies[i];
+          break;
         }
     }
 
   if (config.sort_strategy == NULL)
     {
-      fprintf (
-          stderr,
-          "An error occurred: Option %s not recognized as a sort_strategy\n",
-          argv[2]);
+      fprintf (stderr, "Error: '%s' is not a recognized sort strategy.\n",
+               argv[2]);
+      fprintf (stderr, "Available sort strategies: performance, render\n");
       exit (EXIT_FAILURE);
     }
 
-  // nsec
-  srand (time (NULL));
+  srand (tv.tv_usec);
 
   int n = ARRAY_SIZE;
   int arr[n];
 
-  for (int i = 0; i < n; i++)
+  for (int i = 0; i < n; ++i)
     {
       arr[i] = i;
     }

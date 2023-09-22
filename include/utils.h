@@ -7,6 +7,8 @@
 
 #include "types.h"
 
+#define ARRAY_LENGTH(array, type) (sizeof (array) / sizeof (type))
+
 void print_array (int arr[], int n);
 
 void swap (int arr[], int i, int y);

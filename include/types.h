@@ -1,12 +1,10 @@
-//
-// Created by Thomas Dion-Grondin on 2023-09-21.
-//
-
 #ifndef SORTING_ALGORITHMS_TYPES_H
 #define SORTING_ALGORITHMS_TYPES_H
 
-typedef void (*render_func_t) (int[], int, int);
+#define NAME_MAX_LENGTH                                                       \
+  50 // Defined max length for algorithm and strategy names
 
+typedef void (*render_func_t) (int[], int, int);
 typedef void (*sort_func_t) (render_func_t, int[], int);
 
 enum SORT_STRATEGY
@@ -17,13 +15,13 @@ enum SORT_STRATEGY
 
 struct sort_choice_strategy
 {
-  char name[50];
+  char name[NAME_MAX_LENGTH];
   enum SORT_STRATEGY strategy;
 };
 
 struct sort_choice_algorithm
 {
-  char name[50];
+  char name[NAME_MAX_LENGTH];
   sort_func_t sort_func;
 };
 
