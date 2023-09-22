@@ -67,8 +67,8 @@ performance_test (sort_func_t sort_func, int arr[], int n)
  * @return 0 if sorting is verified, -1 otherwise.
  */
 int
-exec_sort_strategy (SORT_STRATEGY strategy, sort_func_t sort_func, int arr[],
-                    int n)
+exec_sort_strategy (enum SORT_STRATEGY strategy, sort_func_t sort_func,
+                    int arr[], int n)
 {
   int copied_arr[n];
   memcpy (copied_arr, arr, n * sizeof (int));

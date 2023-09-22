@@ -9,33 +9,28 @@ typedef void (*render_func_t) (int[], int, int);
 
 typedef void (*sort_func_t) (render_func_t, int[], int);
 
-typedef enum
+enum SORT_STRATEGY
 {
   PERFORMANCE,
-  RENDER,
-} SORT_STRATEGY;
+  RENDER
+};
 
-typedef struct
+struct sort_choice_strategy
 {
   char name[50];
-} choice_t;
+  enum SORT_STRATEGY strategy;
+};
 
-typedef struct
-{
-  char name[50];
-  SORT_STRATEGY strategy;
-} sort_choice_strategy_t;
-
-typedef struct
+struct sort_choice_algorithm
 {
   char name[50];
   sort_func_t sort_func;
-} sort_choice_algorithm_t;
+};
 
-typedef struct
+struct sort_config
 {
-  sort_choice_algorithm_t *algorithm;
-  sort_choice_strategy_t *sort_strategy;
-} sort_config;
+  struct sort_choice_algorithm *algorithm;
+  struct sort_choice_strategy *sort_strategy;
+};
 
 #endif // SORTING_ALGORITHMS_TYPES_H

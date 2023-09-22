@@ -17,19 +17,20 @@ main (int argc, char *argv[])
       exit (EXIT_FAILURE);
     }
 
-  sort_choice_algorithm_t sort_algorithms[]
+  struct sort_choice_algorithm sort_algorithms[]
       = { { .name = "bubble_sort", .sort_func = bubble_sort },
           { .name = "selection_sort", .sort_func = selection_sort },
           { .name = "insertion_sort", .sort_func = insertion_sort } };
 
-  sort_choice_strategy_t strategies[]
+  struct sort_choice_strategy strategies[]
       = { { .name = "performance", .strategy = PERFORMANCE },
           { .name = "render", .strategy = RENDER } };
 
-  sort_config config;
+  struct sort_config config;
 
   for (int i = 0;
-       i < sizeof (sort_algorithms) / sizeof (sort_choice_algorithm_t); i++)
+       i < sizeof (sort_algorithms) / sizeof (struct sort_choice_algorithm);
+       i++)
     {
       if (strcmp (argv[1], sort_algorithms[i].name) == 0)
         {
@@ -46,8 +47,8 @@ main (int argc, char *argv[])
       exit (EXIT_FAILURE);
     }
 
-  for (int i = 0; i < sizeof (strategies) / sizeof (sort_choice_strategy_t);
-       i++)
+  for (int i = 0;
+       i < sizeof (strategies) / sizeof (struct sort_choice_strategy); i++)
     {
       if (strcmp (argv[2], strategies[i].name) == 0)
         {
