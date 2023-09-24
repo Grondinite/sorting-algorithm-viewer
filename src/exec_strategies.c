@@ -14,7 +14,9 @@ verify_sorting (int original[], const int sorted[], int n)
 {
   int temp[n];
   memcpy (temp, original, n * sizeof (int));
+  clock_t start = clock ();
   qsort (temp, n, sizeof (int), compare);
+  double cpu_time_used = (double)(clock () - start) / CLOCKS_PER_SEC;
   for (int i = 0; i < n; ++i)
     {
       if (temp[i] != sorted[i])
@@ -23,7 +25,8 @@ verify_sorting (int original[], const int sorted[], int n)
           return -1;
         }
     }
-  printf ("Sorting verified.\n");
+  printf ("Sorting verified. Standard qsort took: %f seconds\n",
+          cpu_time_used);
   return 0;
 }
 

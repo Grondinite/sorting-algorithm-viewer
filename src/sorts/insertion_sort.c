@@ -1,4 +1,4 @@
-#include "../include/sorting.h"
+#include "../../include/sorting.h"
 
 void
 insertion_sort (void (*render_func) (int[], int, int), int arr[], int n)

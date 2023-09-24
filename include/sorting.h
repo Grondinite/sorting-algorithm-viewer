@@ -1,6 +1,7 @@
 #ifndef SORTING_ALGORITHMS_SORTING_H
 #define SORTING_ALGORITHMS_SORTING_H
 
+#include "constants.h"
 #include "utils.h"
 
 #define SORT_FUNC_DECL(name)                                                  \

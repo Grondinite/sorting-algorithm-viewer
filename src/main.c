@@ -26,7 +26,9 @@ main (int argc, char *argv[])
   struct sort_choice_algorithm sort_algorithms[]
       = { { .name = "bubble_sort", .sort_func = bubble_sort },
           { .name = "selection_sort", .sort_func = selection_sort },
-          { .name = "insertion_sort", .sort_func = insertion_sort } };
+          { .name = "insertion_sort", .sort_func = insertion_sort },
+          { .name = "quick_sort_recursive_last_pivot",
+            .sort_func = quick_sort_recursive_last_pivot } };
 
   struct sort_choice_strategy strategies[]
       = { { .name = "performance", .strategy = PERFORMANCE },

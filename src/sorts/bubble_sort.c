@@ -1,5 +1,5 @@
 
-#include "../include/sorting.h"
+#include "../../include/sorting.h"
 
 void
 bubble_sort (void (*render_func) (int[], int, int), int array[], int n)
